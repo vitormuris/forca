@@ -87,8 +87,3 @@ void func_jogo(){
 	printf("\n");
 
 }
-
-
- 	
-	
-
