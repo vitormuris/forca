@@ -11,7 +11,8 @@ char matrizDePalavras[15][15] = { "abacate", "cristiano", "desodorante", "hambur
 
 char underLines[15][15] = {"_______", "_________", "___________", "__________", "________", "______________", "_______"
 , "__________", "______", "_______", "__________", "________", "_____", "_________", "__________" };
-
+char underLinesAux[15][15] = {"_______", "_________", "___________", "__________", "________", "______________", "_______"
+, "__________", "______", "_______", "__________", "________", "_____", "_________", "__________" };
 
 
 int main(){
@@ -70,25 +71,32 @@ void func_jogo(){
 	printf("\n");
 	
 	do {	
+		for(i=0; i<quantidade; i++){
+		underLinesAux[sorte][i] = underLines[sorte][i];
+		}
+		
 		scanf("%c", &letra);
 		fflush(stdin);
 		if (letra=='6')
 			main();
-		chances++;
+		
 		for (i = 0; i < quantidade; i++){
 			if (letra == matrizDePalavras[sorte][i])
 					underLines[sorte][i] = letra;
 		}
+		if (!strcmp(underLines[sorte], underLinesAux[sorte]))
+			chances++;
 		for (i=0; i<quantidade; i++){
 			printf("%c ", underLines[sorte][i]);
 		}
 		
 	}while(strcmp(underLines[sorte], matrizDePalavras[sorte]));
 	printf("\n\nFIM DE JOGO!");
-	printf("\n\nVocê precisou de %d chances!\n", chances);
+	printf("\n\nVocê precisou de %d tentativas erradas para até conseguir acertar!\n", chances);
 	printf("\n");
 
 }
+
 
 
  	
