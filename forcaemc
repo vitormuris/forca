@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+#include <locale.h>
+
+int i = 0 ;
+char matrizDePalavras[15][15] = { "abacate", "cristiano", "desodorante", "hamburguer", "maremoto", 
+"esquitossomose", "cadeado", "ventilador", "macaco", "celular", "vasectomia", "carteira", "praia", "algoritmo", "freelancer"};
+
+char underLines[15][15] = {"_______", "_________", "___________", "__________", "________", "______________", "_______"
+, "__________", "______", "_______", "__________", "________", "_____", "_________", "__________" };
+
+
+
+int main(){
+	int mn;
+	setlocale(LC_ALL, "Portuguese");
+	do{
+		printf("======================== JOGO DA FORCA ========================");
+		printf("\n\n                         1 - Novo Jogo\n                         2 - Mostrar Banco de Palavras\n                         3 - Sobre\n                         4 - Ajuda\n                         5 - Sair\n");
+		mn = getchar();
+		fflush(stdin);
+		switch(mn) {
+			case '1':
+				func_jogo();
+				system("pause");
+				break;
+			case '2':
+				printf("\n\nBANCO DE PALAVRAS\n\n");
+				for(i = 0; i < 15; i++)
+					printf("%d - %s\n",i+1, matrizDePalavras[i]);
+					system("pause");
+				break;
+			case '3':
+				printf("\nCriado por: Vitor Hugo Oliveira Santos. Desenvolvido para\nobtenção de crédito na disciplina Linguagem de Programação I\nProf: Jauberth Weyll Abijaude\n\n");
+				system("pause");
+				break;
+			case '4':
+				printf("\n\nO jogo consiste em um sorteio entre 15 palavras, o número de\ntracinhos correspondente a cada letra dessa palavra. Sendo que\no jogador deve descobrir qual palavra é essa escolhendo uma letra do alfabeto\npor vez, O jogo acaba quando o usuário acertar todas as letras. No final será\ninformado quantas tentativas erradas foram feitas até conseguir advinhar a palavra.\n\n");
+				system("pause");
+				break;
+			case '5':
+				exit(0);
+				break;		
+		}
+		system("cls");
+	}while(mn!='5');
+}
+
+void func_jogo(){
+	
+	system("cls");
+	int sorte, i, chances = 0;
+	
+	char letra;
+	
+	srand(time(NULL));
+	sorte = rand() %  15;
+
+	int quantidade = strlen(matrizDePalavras[sorte]);
+	
+	printf("\n\nJogo iniciado, para voltar ao menu principal digite 6 a qualquer momento!\n\n");
+	
+	for (i = 0; i< quantidade; i++){
+		printf("%c ", underLines[sorte][i]);
+	}
+	printf("\n");
+	
+	do {	
+		scanf("%c", &letra);
+		fflush(stdin);
+		if (letra=='6')
+			main();
+		chances++;
+		for (i = 0; i < quantidade; i++){
+			if (letra == matrizDePalavras[sorte][i])
+					underLines[sorte][i] = letra;
+		}
+		for (i=0; i<quantidade; i++){
+			printf("%c ", underLines[sorte][i]);
+		}
+		
+	}while(strcmp(underLines[sorte], matrizDePalavras[sorte]));
+	printf("\n\nFIM DE JOGO!");
+	printf("\n\nVocê precisou de %d chances!\n", chances);
+	printf("\n");
+
+}
+
+
+ 	
+	
+
