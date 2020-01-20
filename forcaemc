@@ -3,6 +3,7 @@
 #include <string.h>
 #include <conio.h>
 #include <locale.h>
+#include <time.h>
 
 int i = 0 ;
 char matrizDePalavras[15][15] = { "abacate", "cristiano", "desodorante", "hamburguer", "maremoto", 
@@ -16,6 +17,7 @@ char underLines[15][15] = {"_______", "_________", "___________", "__________", 
 int main(){
 	int mn;
 	setlocale(LC_ALL, "Portuguese");
+	void func_jogo();
 	do{
 		printf("======================== JOGO DA FORCA ========================");
 		printf("\n\n                         1 - Novo Jogo\n                         2 - Mostrar Banco de Palavras\n                         3 - Sobre\n                         4 - Ajuda\n                         5 - Sair\n");
@@ -87,3 +89,8 @@ void func_jogo(){
 	printf("\n");
 
 }
+
+
+ 	
+	
+
